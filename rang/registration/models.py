@@ -23,14 +23,20 @@ class Participant(models.Model):
         ('thrissur','Thrissur'),
         ('wayanad','Wayanad'),
     }
-    event_list = {
-        ('story','story'),
-        ('dance','dance'),
-        ('poem','poem'),
-    }
     name = models.CharField(max_length=256)
     district = models.CharField(max_length=20,choices=district_list)
     category = models.CharField(max_length=10,choices=cat_list)
 
     def __str__(self):
         return self.name
+
+class Event(models.Model):
+    name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
+
+class Paricipation(models.Model):
+    participant = models.ForeignKey(Participant , on_delete=models.PROTECT)
+    event = models.ForeignKey(Event , on_delete=models.PROTECT)
+    score = models.IntegerField()
