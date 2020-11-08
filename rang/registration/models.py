@@ -24,6 +24,7 @@ class Participant(models.Model):
         ('wayanad','Wayanad'),
     }
     name = models.CharField(max_length=256)
+    phone = models.CharField(max_length=10,default="")
     district = models.CharField(max_length=20,choices=district_list)
     category = models.CharField(max_length=10,choices=cat_list)
 
@@ -37,6 +38,6 @@ class Event(models.Model):
         return self.name
 
 class Paricipation(models.Model):
-    participant = models.ForeignKey(Participant , on_delete=models.PROTECT)
-    event = models.ForeignKey(Event , on_delete=models.PROTECT)
-    score = models.IntegerField()
+    participant = models.ForeignKey(Participant, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    score = models.IntegerField(default=0,blank=True)

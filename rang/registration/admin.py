@@ -7,10 +7,10 @@ class ParticipationInLine( admin.TabularInline):
     max_num = 5
     min_num = 0
 class ParticipantAdmin(admin.ModelAdmin):
-    fields = ['name','district','category',]
+    fields = ['name','district','category','phone']
     search_fields = ['name',]
     list_filter = ['district','category',]
-    list_display = ['name','district','category',]
+    list_display = ['name','district','category','phone']
     inlines = [ParticipationInLine]
 
 class EventInLine( admin.TabularInline):
